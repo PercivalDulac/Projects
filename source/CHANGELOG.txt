@@ -1,0 +1,145 @@
+================================================================================
+  DUAL BLADE EDITOR - CHANGELOG
+================================================================================
+
+This project continues zanto's Lufia II Editor. Versions below 0.9 are his;
+this changelog starts at the point where the expanded version begins.
+
+
+--------------------------------------------------------------------------------
+0.9  -  November 2026   first public release of the expanded editor
+--------------------------------------------------------------------------------
+
+NEW TABS
+
+  Enemy Overview      All 224 enemies in one sortable, editable table, with
+                      EXP per HP, real drop rates, elemental weaknesses and
+                      attack elements. Replaces the old Enemies tab.
+  Enemy AI            Every value in an enemy's battle script, in plain words.
+                      Elemental weaknesses, resistances and immunities.
+                      Enemy skill names. Replaces the old Enemy Skills tab.
+  Encounters          Monster groups, world map zones (with a decoded map of
+                      the zones), sea encounters, dungeon and town maps,
+                      Ancient Cave floors, boss and scripted battles, the
+                      world map encounter rate, and a "find an enemy" lookup.
+  Spell Effects       Spell name, MP and gold cost, the full effect script,
+                      and who can learn each spell. Replaces the old Spells
+                      tab.
+  Characters          Base stats and growth with a level 1-99 chart, plus the
+                      Ancient Cave starting bonus.
+  Party & EXP         The new-game party, equipment, spells and inventory, and
+                      the experience curve.
+  Capsule Monsters    Stats and growth for all forms.
+  Capsule AI          Battle behaviour, starting skills, learnable upgrades
+                      and the learn chance.
+  Capsule Feeding     Wanted items, price brackets and food values, with
+                      impossible requests and look-alike items flagged.
+  Equipment           Bonuses, IP move, who can equip, status effects,
+                      elements and guard effects, Ancient Cave red chests.
+  Items               Consumables: name, price and effect.
+  IP Moves            Name, cost and effect, with shared effects flagged.
+  Shops               Every shop's stock, with space traded between shops.
+  Chests              What all 177 treasure chests on the normal maps hold,
+                      with a find-an-item search.
+  Cave Loot           Ancient Cave loot tables, including all 41 blue chests,
+                      Iris treasures, Providence and the price rule.
+  Descriptions        In-game help text for all 730 items, spells and IP
+                      moves, with an in-game preview and a word finder.
+  Dialogue            About 4,900 lines of story dialogue, searchable and
+                      editable in place.
+  Game Fixes          Ten fixes for bugs in the original game, from Relnqshd's
+                      Lufia II Fixxxer Deluxe and Artea name patch, each with
+                      its own tick box (see below).
+
+NEW FILE MENU TOOLS
+
+  Set clean ROM to compare against... / Stop comparing
+  Create patch (BPS / IPS)...
+  Show changes report...
+  Check ROM for problems...
+  Restore from backup...
+  Expand ROM (3 MB or 4 MB) / Move descriptions back
+  Repair enemy skill names from clean ROM
+
+QUALITY OF LIFE
+
+  - Automatic backups before every save; the newest 10 are kept.
+  - A warning about unsaved changes when closing, opening another ROM or
+    reloading, with Save / Don't save / Cancel.
+  - Change highlighting: anything differing from the clean ROM is blue, and
+    right-click > Restore original puts a field back.
+  - Resizable, maximizable window; the new tabs' lists and editors grow with
+    it.
+  - zanto's three original tabs merged into the new ones: 18 tabs, not 21.
+  - Map names, kept in MapNames.txt so they can be shared.
+  - Help > About, with the version and credits, so the exe carries them even
+    when it is separated from the readme.
+
+FIXES TO THE ORIGINAL EDITOR
+
+  - Enemy skill names were read two names late and one slot off, so the editor
+    showed, and saved into, the wrong name. Could run two names together in
+    game. Now read through the game's own table, with a repair command for
+    ROMs already damaged.
+  - Item drop chance was shown halved and written back rounded down, shaving a
+    point off odd chances on every save. The exact value is now kept.
+  - Save did not store the enemy skill name box unless you clicked away first.
+  - File > Exit did nothing (only Alt+F4 closed the window).
+  - The three offset .txt files and the working ROM copy were opened by bare
+    filename, which Windows resolves against the working directory rather than
+    the program's folder. The editor failed to open a ROM when started from a
+    shortcut with a different "Start in" folder, or via Run as administrator
+    (which can set the working directory to System32). They now resolve
+    against the exe's own folder. Inherited from the original editor.
+  - The Enemies tab's item drop list read names from LufiaItemOffsets.txt, so
+    renamed items showed their old names. (That tab is gone; the new table
+    reads live names from the ROM.)
+  - Capsule monster names were briefly saved as 13 characters during
+    development, which overwrites the byte ending the name and makes the game
+    reset when the capsule menu opens. Names are 12 characters and the end
+    markers are repaired automatically on load.
+
+GAME BUGS THAT CAN NOW BE FIXED
+
+  - Ancient Cave floor 10+ equipment bug: from around floor 9 only weapons and
+    body armour appear in red chests. One tick box fixes it, unticking puts
+    the original code back.
+  - Capsule feeding: the game checks price before it checks whether the item
+    is the one requested, so 37 of the 76 requests in the original game can
+    never be accepted. These are flagged and can be removed in one click.
+  - Game Fixes tab, from Relnqshd's Lufia II Fixxxer Deluxe and Artea name
+    patch: equip menu leftover letters ("Knifeuip"), the settings menu Left
+    bug ("Level 0"), Statue freezing the game from the menu, Sea ring doing
+    nothing, the two Lucky blades' equip lists, six enemies' Mirror check,
+    Bolt Fish locking up, Dark Warrior's palette, "Frue" Gades (a balance
+    change), and Artea's name in menus.
+  - ROMs with Fixxxer Deluxe already applied are recognised: the enemy tabs
+    are switched off for them, since that patch moves the enemy data.
+
+NOTES
+
+  - This is 0.9 because testing is incomplete. The Dialogue tab, ROM
+    expansion, the Game Fixes tab and the tab merge are the newest parts. See "HOW WELL TESTED IS
+    THIS" in README.txt.
+  - Editing is in place wherever the game leaves no spare room, so some things
+    cannot grow. See "KNOWN LIMITS" in README.txt.
+
+
+--------------------------------------------------------------------------------
+PLANNED
+--------------------------------------------------------------------------------
+
+  - "Where is this item used?": every shop, cave table, enemy drop, starting
+    inventory and feeding list that references an item.
+  - Type-to-search in the long dropdown lists.
+  - A code fix for the capsule feeding order, so requested items are accepted
+    regardless of price.
+  - Spreadsheet export and import for bulk balancing.
+
+
+--------------------------------------------------------------------------------
+BEFORE 0.9
+--------------------------------------------------------------------------------
+
+  The original Lufia II Editor by zanto, which this builds on:
+  https://www.romhacking.net/utilities/1066/
